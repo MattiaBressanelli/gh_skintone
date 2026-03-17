@@ -28,6 +28,7 @@ namespace SkinTone
             pManager.AddColourParameter("Canvas Mono Color", "MoC", "The color to use for the entire canvas if Canvas Mono is true.", GH_ParamAccess.item);
             pManager.AddColourParameter("Canvas Shade Color", "Sh", "The color of the shade of the canvas.", GH_ParamAccess.item);
 
+            pManager.AddColourParameter("Panel Background", "Pb", "The background color of the panels.", GH_ParamAccess.item);
             pManager.AddColourParameter("Group Background", "Gb", "The background color of the groups.", GH_ParamAccess.item);
 
             pManager.AddBooleanParameter("Defaults", "D", "Go back to default skin.", GH_ParamAccess.item);
@@ -40,8 +41,9 @@ namespace SkinTone
             pManager[5].Optional = true;
 
             pManager[6].Optional = true;
-
             pManager[7].Optional = true;
+
+            pManager[8].Optional = true;
         }
 
         /// <summary>
@@ -67,6 +69,7 @@ namespace SkinTone
             Color monoColor = Grasshopper.GUI.Canvas.GH_Skin.canvas_mono_color;
             Color canvasShade = Grasshopper.GUI.Canvas.GH_Skin.canvas_shade;
 
+            Color panelBackground = Grasshopper.GUI.Canvas.GH_Skin.panel_back;
             Color groupBackground = Grasshopper.GUI.Canvas.GH_Skin.group_back;
 
             bool defaults = false;
@@ -78,9 +81,10 @@ namespace SkinTone
             DA.GetData(4, ref monoColor);
             DA.GetData(5, ref canvasShade);
 
-            DA.GetData(6, ref groupBackground);
+            DA.GetData(6, ref panelBackground);
+            DA.GetData(7, ref groupBackground);
 
-            DA.GetData(7, ref defaults);
+            DA.GetData(8, ref defaults);
 
             // Solve
             // If defaults set this values
@@ -93,6 +97,7 @@ namespace SkinTone
                 Grasshopper.GUI.Canvas.GH_Skin.canvas_mono_color = Color.FromArgb(255, 212, 208, 200);
                 Grasshopper.GUI.Canvas.GH_Skin.canvas_shade = Color.FromArgb(80, 0, 0, 0);
 
+                Grasshopper.GUI.Canvas.GH_Skin.panel_back = Color.FromArgb(255, 255, 250, 90);
                 Grasshopper.GUI.Canvas.GH_Skin.group_back = Color.FromArgb(150, 170, 135, 225);
 
                 Grasshopper.GUI.Canvas.GH_Skin.SaveSkin();
@@ -107,6 +112,7 @@ namespace SkinTone
                 Grasshopper.GUI.Canvas.GH_Skin.canvas_mono_color = monoColor;
                 Grasshopper.GUI.Canvas.GH_Skin.canvas_shade = canvasShade;
 
+                Grasshopper.GUI.Canvas.GH_Skin.panel_back = panelBackground;
                 Grasshopper.GUI.Canvas.GH_Skin.group_back = groupBackground;
 
                 Grasshopper.GUI.Canvas.GH_Skin.SaveSkin();
